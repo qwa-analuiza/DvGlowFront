@@ -14,17 +14,21 @@
 
     <div class="corpo">
       <div class="coluna-foto">
-        <span class="rotulo">Foto do produto</span>
-        <label class="area-foto" [class.com-foto]="previa">
-          <input type="file" accept="image/jpeg,image/png,image/webp" (change)="escolherImagem($event)" hidden>
-          <img *ngIf="previa; else vazia" [src]="previa" alt="Prévia da foto do produto">
+        <span class="rotulo">Fotos do produto</span>
+        <label class="area-foto" [class.com-foto]="imagensExibidas.length > 0">
+          <input type="file" accept="image/jpeg,image/png,image/webp" (change)="escolherImagens($event)" multiple hidden>
+          <img *ngIf="imagensExibidas.length > 0; else vazia" [src]="imagensExibidas[0]" alt="Prévia da foto do produto">
           <ng-template #vazia>
             <app-icone nome="imagem" [tamanho]="22"></app-icone>
-            <span>Clique para escolher uma foto</span>
+            <span>Clique para escolher até 3 fotos</span>
           </ng-template>
-          <span class="trocar" *ngIf="previa">Trocar foto</span>
+          <span class="trocar" *ngIf="imagensExibidas.length > 0">Trocar fotos</span>
         </label>
-        <small>JPG, PNG ou WEBP. Máximo 1,5 MB.</small>
+        <div class="miniaturas-fotos" *ngIf="imagensExibidas.length > 1">
+          <img *ngFor="let imagem of imagensExibidas; let indice = index"
+               [src]="imagem" [alt]="'Prévia da foto ' + (indice + 1) + ' do produto'">
+        </div>
+        <small>Até 3 fotos. JPG, PNG ou WEBP. Máximo 1,5 MB por foto.</small>
       </div>
 
       <div class="coluna-dados">

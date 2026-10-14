@@ -14,7 +14,11 @@
   <div class="grade-produtos">
     <article class="produto" *ngFor="let produto of produtosFiltrados">
       <div class="foto">
-        <img [src]="produto.imagem" [alt]="produto.nome">
+        <img [src]="imagemAtual(produto)" [alt]="produto.nome">
+        <div class="indicadores-foto" *ngIf="imagensDo(produto).length > 1" aria-hidden="true">
+          <span *ngFor="let imagem of imagensDo(produto); let indice = index"
+                [class.ativo]="indiceDaImagem(produto) === indice"></span>
+        </div>
         <button class="favorito" [class.ativo]="ehFavorito(produto.id)"
                 (click)="alternarFavorito(produto.id)" aria-label="Favoritar">
           <app-icone [nome]="ehFavorito(produto.id) ? 'coracao-cheio' : 'coracao'" [tamanho]="16"></app-icone>
@@ -23,6 +27,7 @@
       <p class="etiqueta categoria">{{ produto.categoria }}</p>
       <h3>{{ produto.nome }}</h3>
       <p class="preco">{{ lista.formatarPreco(produto.preco) }}</p>
+      <p class="frete">Frete por conta do cliente</p>
       <button class="botao-adicionar" (click)="lista.adicionar(produto)">Adicionar à lista</button>
     </article>
   </div>

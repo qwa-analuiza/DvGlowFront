@@ -14,6 +14,13 @@
 .grade-produtos { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 14px; }
 .foto { position: relative; aspect-ratio: 1 / 1.15; border-radius: 18px; overflow: hidden; background: #fff; margin-bottom: 16px; }
 .foto img { width: 100%; height: 100%; object-fit: cover; }
+.indicadores-foto {
+  position: absolute; bottom: 10px; left: 50%; display: flex; gap: 6px;
+  padding: 5px 7px; border-radius: 999px; background: rgba(255, 255, 255, 0.8);
+  transform: translateX(-50%);
+}
+.indicadores-foto span { width: 6px; height: 6px; border-radius: 50%; background: #c9aeb2; }
+.indicadores-foto span.ativo { background: var(--rosa-escuro); }
 .favorito {
   position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%;
   background: rgba(255, 255, 255, 0.92); display: flex; align-items: center; justify-content: center; color: var(--texto);
@@ -21,7 +28,8 @@
 .favorito.ativo { color: var(--rosa-escuro); }
 .categoria { font-size: 10.5px; margin-bottom: 6px; }
 .produto h3 { font-size: 15px; font-weight: 500; line-height: 1.4; color: var(--texto); margin-bottom: 8px; }
-.preco { font-size: 15px; font-weight: 600; color: var(--rosa-escuro); margin-bottom: 14px; }
+.preco { font-size: 15px; font-weight: 600; color: var(--rosa-escuro); margin-bottom: 4px; }
+.frete { font-size: 10px; line-height: 1.5; color: var(--texto-suave); margin-bottom: 14px; }
 .botao-adicionar {
   width: 100%; padding: 12px 8px; border-radius: 10px; border: 1px solid var(--borda-rosa);
   font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--texto);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { Produto } from '../modelos/produto.modelo';
+import { normalizarProduto, Produto } from '../modelos/produto.modelo';
 import { SupabaseServico } from './supabase.servico';
 
 /** Catálogo público da loja, lido direto do Supabase. */
@@ -18,6 +18,6 @@ export class CatalogoServico {
       .select('id, nome, categoria, preco, imagem')
       .order('id');
     if (error) throw error;
-    return data as Produto[];
+    return data.map((produto) => normalizarProduto(produto));
   }
 }

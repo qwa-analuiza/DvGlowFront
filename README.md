@@ -26,6 +26,7 @@ Requisitos: Node 16.14+ ou 18+.
 - `src/app/servicos/produto.servico.ts` → cadastrar, editar e excluir produtos e fotos (admin)
 - `src/app/servicos/catalogo.servico.ts` → lista de produtos exibida na loja (`/`)
 - O que o admin cadastra, edita ou exclui aparece na loja.
+- Cada produto pode ter até 3 fotos (JPG, PNG ou WEBP, até 1,5 MB cada). As fotos adicionais são armazenadas como uma lista JSON na coluna `imagem` já existente; produtos antigos com uma única URL continuam funcionando sem alteração no banco.
 
 ## Configurando o Supabase
 1. No SQL Editor do Supabase, rode o arquivo `supabase/script.sql` (tabela `produtos`, permissões e bucket `produtos` para as fotos).

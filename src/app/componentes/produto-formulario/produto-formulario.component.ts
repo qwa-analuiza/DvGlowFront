@@ -8,6 +8,7 @@ import { mensagemDeErro } from '../../utilitarios/mensagem-de-erro';
 
 const TIPOS_PERMITIDOS = ['image/jpeg', 'image/png', 'image/webp'];
 const TAMANHO_MAXIMO_EM_BYTES = 1.5 * 1024 * 1024;
+const QUANTIDADE_MAXIMA_DE_IMAGENS = 3;
 
 @Component({
   selector: 'app-produto-formulario',
@@ -28,8 +29,8 @@ export class ProdutoFormularioComponent implements OnInit {
     preco: ['', [Validators.required, Validators.pattern(/^\d+([.,]\d{1,2})?$/)]],
     categoria: ['Maquiagem', Validators.required],
   });
-  imagemEscolhida: File | null = null;
-  previa: string | null = null;
+  imagensEscolhidas: File[] = [];
+  previas: string[] = [];
   salvando = false;
   erro = '';
 
@@ -46,7 +47,11 @@ export class ProdutoFormularioComponent implements OnInit {
       preco: this.produto.preco.toFixed(2).replace('.', ','),
       categoria: this.produto.categoria,
     });
-    this.previa = this.produto.imagem;
+  }
+
+  get imagensExibidas(): string[] {
+    if (this.previas.length > 0) return this.previas;
+    return this.produto?.imagens?.length ? this.produto.imagens : this.produto ? [this.produto.imagem] : [];
   }
 
   @HostListener('document:keydown.escape')
@@ -54,24 +59,35 @@ export class ProdutoFormularioComponent implements OnInit {
     if (!this.salvando) this.cancelado.emit();
   }
 
-  escolherImagem(evento: Event): void {
-    const arquivo = (evento.target as HTMLInputElement).files?.[0];
-    if (!arquivo) return;
+  escolherImagens(evento: Event): void {
+    const entrada = evento.target as HTMLInputElement;
+    const arquivos = Array.from(entrada.files ?? []);
+    entrada.value = '';
+    if (arquivos.length === 0) return;
 
-    if (!TIPOS_PERMITIDOS.includes(arquivo.type)) {
+    if (arquivos.length > QUANTIDADE_MAXIMA_DE_IMAGENS) {
+      this.erro = 'Escolha no máximo 3 fotos para o produto.';
+      return;
+    }
+    if (arquivos.some((arquivo) => !TIPOS_PERMITIDOS.includes(arquivo.type))) {
       this.erro = 'Envie uma imagem JPG, PNG ou WEBP.';
       return;
     }
-    if (arquivo.size > TAMANHO_MAXIMO_EM_BYTES) {
-      this.erro = 'A imagem deve ter no máximo 1,5 MB.';
+    if (arquivos.some((arquivo) => arquivo.size > TAMANHO_MAXIMO_EM_BYTES)) {
+      this.erro = 'Cada imagem deve ter no máximo 1,5 MB.';
       return;
     }
 
     this.erro = '';
-    this.imagemEscolhida = arquivo;
-    const leitor = new FileReader();
-    leitor.onload = () => (this.previa = leitor.result as string);
-    leitor.readAsDataURL(arquivo);
+    Promise.all(arquivos.map((arquivo) => this.lerImagem(arquivo))).then(
+      (previas) => {
+        this.imagensEscolhidas = arquivos;
+        this.previas = previas;
+      },
+      () => {
+        this.erro = 'Não foi possível carregar a prévia das imagens. Tente novamente.';
+      }
+    );
   }
 
   salvar(): void {
@@ -79,8 +95,8 @@ export class ProdutoFormularioComponent implements OnInit {
       this.formulario.markAllAsTouched();
       return;
     }
-    if (!this.editando && !this.imagemEscolhida) {
-      this.erro = 'Escolha uma foto para o produto.';
+    if (!this.editando && this.imagensEscolhidas.length === 0) {
+      this.erro = 'Escolha pelo menos uma foto para o produto.';
       return;
     }
 
@@ -105,7 +121,19 @@ export class ProdutoFormularioComponent implements OnInit {
       nome: nome.trim(),
       preco: Number(preco.replace(',', '.')),
       categoria,
-      imagem: this.imagemEscolhida,
+      imagens: this.imagensEscolhidas,
     };
+  }
+
+  private lerImagem(arquivo: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const leitor = new FileReader();
+      leitor.onload = () => {
+        if (typeof leitor.result === 'string') resolve(leitor.result);
+        else reject(new Error('Formato de prévia de imagem inválido.'));
+      };
+      leitor.onerror = () => reject(leitor.error ?? new Error('Falha ao ler imagem.'));
+      leitor.readAsDataURL(arquivo);
+    });
   }
 }
