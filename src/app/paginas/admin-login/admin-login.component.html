@@ -1,0 +1,42 @@
+<div class="pagina">
+  <aside class="painel-marca">
+    <div class="chamada">
+      <p class="etiqueta-clara">Painel administrativo</p>
+      <h1>Sua vitrine sempre linda e atualizada.</h1>
+      <p class="texto">Cadastre novidades, atualize preços e organize todo o catálogo da DV Glow em um só lugar.</p>
+    </div>
+
+    <p class="rodape">Área exclusiva para gestão da loja.</p>
+  </aside>
+
+  <main class="painel-formulario">
+    <div class="conteudo">
+      <a class="voltar" routerLink="/">
+        <app-icone nome="voltar" [tamanho]="16"></app-icone> Voltar para a loja
+      </a>
+
+      <p class="etiqueta">Bem-vinda</p>
+      <h2>Acesse sua conta</h2>
+      <p class="subtitulo">Entre com seus dados para gerenciar os produtos da loja.</p>
+
+      <form [formGroup]="formulario" (ngSubmit)="entrar()" novalidate>
+        <label class="admin-campo">
+          <span>E-mail</span>
+          <input class="admin-entrada" type="email" formControlName="email" placeholder="seu@email.com" autocomplete="username">
+        </label>
+
+        <label class="admin-campo">
+          <span>Senha</span>
+          <input class="admin-entrada" type="password" formControlName="senha" placeholder="Digite sua senha" autocomplete="current-password">
+        </label>
+
+        <p class="admin-erro" *ngIf="erro">{{ erro }}</p>
+
+        <button class="admin-botao admin-botao-primario" type="submit" [disabled]="entrando">
+          {{ entrando ? 'Entrando...' : 'Entrar no painel' }}
+        </button>
+      </form>
+
+    </div>
+  </main>
+</div>

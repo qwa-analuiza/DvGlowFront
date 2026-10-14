@@ -1,0 +1,29 @@
+.secao-sobre { background: #fff; padding: 40px 20px 50px; }
+.cartao-sobre {
+  max-width: 1022px; margin: 0 auto; background: #faf0ee; border: 1px solid #ecd5d7;
+  border-radius: 28px; padding: 36px 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
+}
+.logo-sobre { width: 84px; height: 84px; border-radius: 50%; background: #fff; }
+.cartao-sobre .etiqueta { font-size: 15px; margin-bottom: 12px; }
+.cartao-sobre h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; color: var(--texto-titulo); margin-bottom: 14px; }
+.texto { font-size: 14.5px; line-height: 1.9; color: var(--texto-suave); font-weight: 300; }
+
+.beneficios { background: #fff; border-top: 1px solid #efe6e4; padding: 30px 20px; }
+.beneficios-conteudo { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.beneficio { display: flex; align-items: center; gap: 14px; }
+.icone-circulo {
+  flex: none; width: 44px; height: 44px; border-radius: 50%; background: #f6e9ea; color: var(--rosa-escuro);
+  display: flex; align-items: center; justify-content: center;
+}
+.beneficio h4 { font-size: 14.5px; font-weight: 600; color: var(--texto); margin-bottom: 2px; }
+.beneficio p { font-size: 12.5px; color: #8a757b; }
+
+@media (min-width: 768px) {
+  .secao-sobre { padding: 70px 20px 70px; }
+  .cartao-sobre { flex-direction: row; align-items: center; gap: 52px; padding: 56px 60px; border-radius: 36px; }
+  .logo-sobre { width: 140px; height: 140px; flex: none; margin: 0 0 0 0; }
+  .cartao-sobre h2 { font-size: 1.7rem; }
+  .texto { font-size: 15px; line-height: 1.85; }
+  .beneficios { padding: 40px 20px; }
+  .beneficios-conteudo { flex-direction: row; justify-content: space-between; }
+}

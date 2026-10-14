@@ -1,0 +1,46 @@
+.hero {
+  position: relative; overflow: hidden; background: var(--fundo-hero);
+  min-height: 650px; padding: 120px 20px 80px;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+}
+.mancha { position: absolute; border-radius: 50%; filter: blur(50px); pointer-events: none; }
+.mancha-esquerda { width: 340px; height: 340px; top: -60px; left: -120px; background: rgba(224, 186, 196, 0.55); }
+.mancha-direita { width: 380px; height: 380px; bottom: -80px; right: -140px; background: rgba(214, 170, 180, 0.5); }
+
+.circulo {
+  position: absolute; top: 50%; left: 50%; width: 410px; height: 410px;
+  transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid #e3cdd1;
+}
+.conteudo { position: relative; max-width: 330px; }
+.chamada { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 10.5px; margin-bottom: 18px; }
+
+h1 { font-size: 2.85rem; line-height: 1; font-weight: 600; letter-spacing: -0.04em; color: #3a2a2f; }
+h1 em {
+    font-family: 'Cormorant Garamond', serif;
+  font-size: 100px;
+  font-style: bold;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -7px;
+  color: #ae626c;
+  transform: scaleX(1.08);}
+.descricao { margin: 22px 0 32px; font-size: 15.5px; line-height: 1.75; font-weight: 300; color: #6f5a60; }
+
+.botao-principal {
+  display: inline-flex; align-items: center; gap: 12px; padding: 18px 26px; border-radius: 10px;
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #fff;
+  background: linear-gradient(135deg, #a8606e, #bb7a85);
+  box-shadow: 0 12px 26px rgba(168, 96, 110, 0.35);
+}
+
+@media (min-width: 768px) {
+  .hero { min-height: 690px; padding: 100px 20px 60px; }
+  .circulo { width: 560px; height: 560px; }
+  .conteudo { max-width: 700px; }
+  .mancha-esquerda { width: 380px; height: 380px; top: 40px; left: -160px; }
+  .mancha-direita { width: 460px; height: 460px; bottom: -60px; right: -160px; }
+  .chamada { font-size: 16px; margin-bottom: 14px; }
+  h1 { font-size: 5.3rem; }
+  .descricao { max-width: 600px; margin: 22px auto 34px; font-size: 18px; }
+  .botao-principal { padding: 17px 28px; }
+}

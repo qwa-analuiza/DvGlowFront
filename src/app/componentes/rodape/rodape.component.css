@@ -1,0 +1,22 @@
+.rodape { background: linear-gradient(120deg, #a8606e 0%, #b97580 50%, #9a5565 100%); color: #fff; }
+.rodape-conteudo { max-width: 1200px; margin: 0 auto; padding: 70px 24px 40px; display: flex; flex-direction: column; gap: 40px; }
+.descricao { font-size: 19px; line-height: 1.65; color: rgba(255, 255, 255, 0.92) ; font-style: bold; }
+h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 18px; }
+.links { display: flex; flex-direction: column; gap: 14px; font-size: 15px; }
+.links a:hover { opacity: 0.75; }
+.redes { display: flex; gap: 12px; margin-top: 24px; }
+.redes a {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+}
+.redes a:hover { background: rgba(255, 255, 255, 0.18); }
+.direitos {
+  border-top: 1px solid rgba(255, 255, 255, 0.2); padding: 24px 20px; text-align: center;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) {
+  .rodape-conteudo { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 60px; padding: 80px 60px 70px; }
+  .rodape-conteudo > .descricao { margin-top: 20px; }
+  .rodape-conteudo > div:last-child .descricao { margin-top: 0; }
+}

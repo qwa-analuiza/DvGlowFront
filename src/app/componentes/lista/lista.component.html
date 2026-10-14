@@ -1,0 +1,59 @@
+<div class="fundo-escuro" [class.visivel]="lista.listaAberta" (click)="lista.fecharLista()"></div>
+
+<aside class="notificacao-adicionado" *ngIf="lista.notificacaoProduto as produto" role="status" aria-live="polite">
+  <span class="notificacao-icone"><app-icone nome="sacola" [tamanho]="20"></app-icone></span>
+  <div class="notificacao-conteudo">
+    <p class="notificacao-titulo">Adicionado à sua lista</p>
+    <p class="notificacao-produto">{{ produto.nome }}</p>
+    <button class="notificacao-acao" (click)="lista.abrirLista()">
+      Acessar lista <app-icone nome="seta" [tamanho]="14"></app-icone>
+    </button>
+  </div>
+  <button class="notificacao-fechar" (click)="lista.fecharNotificacao()" aria-label="Fechar notificação">
+    <app-icone nome="fechar" [tamanho]="15"></app-icone>
+  </button>
+</aside>
+
+<aside class="gaveta" [class.aberta]="lista.listaAberta">
+  <header class="gaveta-topo">
+    <div>
+      <p class="etiqueta">Sua seleção</p>
+      <h2>Lista de produtos ({{ lista.quantidadeTotal }})</h2>
+    </div>
+    <button class="botao-fechar" (click)="lista.fecharLista()" aria-label="Fechar lista">
+      <app-icone nome="fechar" [tamanho]="18"></app-icone>
+    </button>
+  </header>
+
+  <div class="vazio" *ngIf="lista.itens.length === 0">
+    <span class="icone-vazio"><app-icone nome="sacola" [tamanho]="22"></app-icone></span>
+    <h3>Sua lista está vazia</h3>
+    <p>Adicione os produtos que você gostou e envie tudo de uma vez pelo WhatsApp.</p>
+    <a href="#produtos" class="explorar" (click)="lista.fecharLista()">Explorar catálogo</a>
+  </div>
+
+  <ul class="itens" *ngIf="lista.itens.length > 0">
+    <li class="item" *ngFor="let item of lista.itens">
+      <img [src]="item.produto.imagem" [alt]="item.produto.nome">
+      <div class="item-info">
+        <p class="item-nome">{{ item.produto.nome }}</p>
+        <p class="item-preco">{{ lista.formatarPreco(item.produto.preco) }}</p>
+        <div class="quantidade">
+          <button (click)="lista.alterarQuantidade(item.produto.id, -1)">−</button>
+          <span>{{ item.quantidade }}</span>
+          <button (click)="lista.alterarQuantidade(item.produto.id, 1)">+</button>
+        </div>
+      </div>
+      <button class="remover" (click)="lista.remover(item.produto.id)" aria-label="Remover">
+        <app-icone nome="fechar" [tamanho]="16"></app-icone>
+      </button>
+    </li>
+  </ul>
+
+  <footer class="gaveta-rodape" *ngIf="lista.itens.length > 0">
+    <div class="total"><span>Total</span><strong>{{ lista.formatarPreco(lista.valorTotal) }}</strong></div>
+    <a class="botao-whatsapp" [href]="lista.linkWhatsapp()" target="_blank" rel="noopener">
+      Enviar lista pelo WhatsApp <app-icone nome="seta" [tamanho]="16"></app-icone>
+    </a>
+  </footer>
+</aside>

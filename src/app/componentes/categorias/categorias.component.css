@@ -1,0 +1,52 @@
+.secao-categorias { background: var(--fundo); padding: 56px 20px 64px; }
+.cabecalho-secao { text-align: center; margin-bottom: 36px; }
+.com-linhas { display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 15px; margin-bottom: 14px; }
+.com-linhas::before, .com-linhas::after { content: ''; width: 70px; height: 1px; background: var(--borda-rosa); }
+
+.grade { max-width: 1022px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 16px; }
+.cartao {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 40px 30px 36px; border-radius: 18px; border: 1px solid var(--borda-rosa);
+ /*-background: linear-gradient(135deg, #fbe3e8, #f6e6ea);*/
+ background: linear-gradient(135deg, #a8606e, #bb7a85b4);
+  box-shadow: 0 14px 30px rgba(190, 120, 135, 0.1);
+}
+.cartao .etiqueta { font-size: 13px; color: var(--fundo); margin-bottom: 6px; }
+.cartao h3 { font-size: 1.7rem; font-weight: 600; color: var(--rosa-claro); margin: 14px 0 12px; }
+.cartao p { font-size: 13.5px; line-height: 1.75; color: var(--fundo); max-width: 270px; margin-bottom: 26px; }
+.botao-seta {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--rosa-claro);
+  display: flex; align-items: center; justify-content: center; color: var(--rosa-claro);
+  margin-top: auto; transition: all 0.25s;
+}
+.cartao:hover .botao-seta { background: var(--rosa); color: #fff; }
+
+.faixa-mercado-livre {
+  background: #b9758036;
+  border-top: 1px solid #e8bcc6; border-bottom: 1px solid #e8bcc6; padding: 38px 20px;
+}
+.faixa-conteudo {
+  max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px;
+  align-items: flex-start;
+}
+.faixa-conteudo .etiqueta { font-size: 14px; margin-bottom: 6px; }
+.faixa-conteudo h3 { font-size: 1.45rem; font-weight: 600; color: #7a4650; margin-bottom: 6px; }
+.faixa-texto { font-size: 13px; color: var(--texto-suave); }
+.botao-contorno {
+  display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; border-radius: 10px;
+  border: 1px solid var(--rosa); background: rgba(255, 255, 255, 0.55); color: #8a4a56;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+
+
+@media (min-width: 768px) {
+  .secao-categorias { padding: 80px 20px 80px; }
+  .com-linhas::before, .com-linhas::after { width: 130px; }
+  .grade { grid-template-columns: repeat(3, 1fr); }
+  .cartao { padding: 40px 30px 36px; min-height: 285px; }
+  .cartao h3 { font-size: 2rem; }
+  .faixa-mercado-livre { padding: 40px 20px; }
+  .faixa-conteudo { flex-direction: row; align-items: center; justify-content: space-between; }
+  .faixa-conteudo h3 { font-size: 1.7rem; }
+}

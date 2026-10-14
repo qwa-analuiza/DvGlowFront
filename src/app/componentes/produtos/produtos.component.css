@@ -1,0 +1,44 @@
+.secao-produtos { background: var(--fundo); padding: 56px 20px 70px; scroll-margin-top: 0; }
+.cabecalho-secao { text-align: center; max-width: 1200px; margin: 0 auto 28px; }
+.cabecalho-secao .etiqueta { font-size: 12.5px; margin-bottom: 14px; }
+.subtitulo { margin-top: 14px; font-size: 14.5px; line-height: 1.7; color: var(--texto-suave); font-weight: 300; }
+
+.filtros { display: flex; gap: 10px; justify-content: flex-start; overflow-x: auto; padding: 4px 0 6px; margin: 0 auto 30px; max-width: 1200px; scrollbar-width: none; }
+.filtros::-webkit-scrollbar { display: none; }
+.filtro {
+  flex: none; padding: 11px 22px; border-radius: 999px; border: 1px solid var(--borda-rosa);
+  background: #fff; font-size: 13.5px; font-weight: 500; color: var(--texto);
+}
+.filtro.ativo { background: linear-gradient(135deg, #a8606e, #bb7a85); border-color: transparent; color: #fff; font-weight: 600; }
+
+.grade-produtos { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 14px; }
+.foto { position: relative; aspect-ratio: 1 / 1.15; border-radius: 18px; overflow: hidden; background: #fff; margin-bottom: 16px; }
+.foto img { width: 100%; height: 100%; object-fit: cover; }
+.favorito {
+  position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92); display: flex; align-items: center; justify-content: center; color: var(--texto);
+}
+.favorito.ativo { color: var(--rosa-escuro); }
+.categoria { font-size: 10.5px; margin-bottom: 6px; }
+.produto h3 { font-size: 15px; font-weight: 500; line-height: 1.4; color: var(--texto); margin-bottom: 8px; }
+.preco { font-size: 15px; font-weight: 600; color: var(--rosa-escuro); margin-bottom: 14px; }
+.botao-adicionar {
+  width: 100%; padding: 12px 8px; border-radius: 10px; border: 1px solid var(--borda-rosa);
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--texto);
+  transition: background 0.2s, color 0.2s;
+}
+.botao-adicionar:hover { background: var(--rosa); border-color: var(--rosa); color: #fff; }
+.vazio { text-align: center; color: var(--texto-suave); font-size: 14px; padding: 30px 0; }
+
+@media (min-width: 768px) {
+  .secao-produtos { padding: 90px 20px 90px; }
+  .cabecalho-secao { margin-bottom: 36px; }
+  .subtitulo { font-size: 15px; }
+  .filtros { justify-content: center; }
+  .grade-produtos { grid-template-columns: repeat(4, 1fr); gap: 36px 24px;   }
+}
+/* No computador o botão só aparece ao passar o mouse, como no protótipo */
+@media (min-width: 768px) and (hover: hover) {
+  .botao-adicionar { display: none; }
+  .produto:hover .botao-adicionar { display: block; }
+}

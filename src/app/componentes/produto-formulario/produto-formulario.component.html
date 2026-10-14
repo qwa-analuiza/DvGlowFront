@@ -1,0 +1,65 @@
+<div class="fundo" (click)="cancelar()">
+  <form class="janela" [formGroup]="formulario" (ngSubmit)="salvar()" (click)="$event.stopPropagation()"
+        role="dialog" aria-modal="true" novalidate>
+
+    <header class="topo">
+      <div>
+        <p class="etiqueta">{{ editando ? 'Edição' : 'Novo cadastro' }}</p>
+        <h2>{{ editando ? 'Editar produto' : 'Adicionar produto' }}</h2>
+      </div>
+      <button class="fechar" type="button" (click)="cancelar()" aria-label="Fechar">
+        <app-icone nome="fechar" [tamanho]="16"></app-icone>
+      </button>
+    </header>
+
+    <div class="corpo">
+      <div class="coluna-foto">
+        <span class="rotulo">Foto do produto</span>
+        <label class="area-foto" [class.com-foto]="previa">
+          <input type="file" accept="image/jpeg,image/png,image/webp" (change)="escolherImagem($event)" hidden>
+          <img *ngIf="previa; else vazia" [src]="previa" alt="Prévia da foto do produto">
+          <ng-template #vazia>
+            <app-icone nome="imagem" [tamanho]="22"></app-icone>
+            <span>Clique para escolher uma foto</span>
+          </ng-template>
+          <span class="trocar" *ngIf="previa">Trocar foto</span>
+        </label>
+        <small>JPG, PNG ou WEBP. Máximo 1,5 MB.</small>
+      </div>
+
+      <div class="coluna-dados">
+        <label class="admin-campo">
+          <span>Nome do produto</span>
+          <input class="admin-entrada" type="text" formControlName="nome" placeholder="Ex.: Base Líquida Matte" maxlength="120">
+        </label>
+
+        <div class="linha">
+          <label class="admin-campo">
+            <span>Preço</span>
+            <div class="preco">
+              <span class="moeda">R$</span>
+              <input class="admin-entrada" type="text" inputmode="decimal" formControlName="preco" placeholder="0,00">
+            </div>
+          </label>
+
+          <label class="admin-campo">
+            <span>Categoria</span>
+            <select class="admin-entrada" formControlName="categoria">
+              <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <footer class="rodape">
+      <p class="admin-erro" *ngIf="erro">{{ erro }}</p>
+      <div class="botoes">
+        <button class="admin-botao admin-botao-contorno" type="button" (click)="cancelar()" [disabled]="salvando">Cancelar</button>
+        <button class="admin-botao admin-botao-primario" type="submit" [disabled]="salvando">
+          {{ salvando ? 'Salvando...' : editando ? 'Salvar alterações' : 'Adicionar produto' }}
+        </button>
+      </div>
+    </footer>
+  </form>
+</div>

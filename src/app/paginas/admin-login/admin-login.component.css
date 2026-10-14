@@ -1,0 +1,54 @@
+:host { display: block; min-height: 100vh; }
+
+.pagina { display: grid; grid-template-columns: 1fr; min-height: 100vh; }
+
+/* ----- lado da marca ----- */
+.painel-marca {
+  position: relative; overflow: hidden; color: #fff;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
+  padding: 44px 24px 32px;
+  background: linear-gradient(135deg, #a05a68 0%, #bb7a85 55%, #86485a 100%);
+}
+.painel-marca::before, .painel-marca::after {
+  content: ''; position: absolute; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.18); pointer-events: none;
+}
+.painel-marca::before { width: 380px; height: 380px; right: -160px; top: -120px; }
+.painel-marca::after { width: 260px; height: 260px; right: -90px; top: -60px; }
+
+
+.chamada { position: relative; z-index: 1; max-width: 620px; }
+.etiqueta-clara { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.8); margin-bottom: 14px; }
+.chamada h1 { font-size: 2rem; font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; }
+.texto { display: none; margin-top: 22px; font-size: 16px; line-height: 1.7; font-weight: 300; color: rgba(255, 255, 255, 0.88); }
+.rodape { display: none; font-size: 12px; color: rgba(255, 255, 255, 0.7); position: relative; z-index: 1; }
+
+/* ----- lado do formulário ----- */
+.painel-formulario { display: flex; align-items: flex-start; justify-content: center; padding: 36px 24px 48px; background: #f9eeee; }
+.conteudo { width: 100%; max-width: 448px; }
+
+.voltar { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--texto-suave); margin-bottom: 48px; }
+.voltar:hover { color: var(--rosa-escuro); }
+
+.etiqueta { margin-bottom: 14px; }
+h2 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; color: var(--texto-titulo); }
+.subtitulo { margin: 14px 0 32px; font-size: 14px; line-height: 1.6; color: var(--texto-suave); }
+
+form { display: flex; flex-direction: column; gap: 20px; }
+form .admin-botao { width: 100%; }
+
+
+@media (min-width: 900px) {
+  .pagina { grid-template-columns: 1.3fr 1fr; }
+  .painel-marca { padding: 52px 52px 48px;  }
+  .chamada { margin: auto 0; }
+  .chamada h1 { font-size: 3rem; }
+  .texto { display: block; max-width: 470px; }
+  .rodape { display: block; }
+  .painel-formulario { align-items: center; padding: 48px; }
+  .voltar { margin-bottom: 64px; }
+}
+
+@media (min-width: 500px) {
+  .painel-marca { padding: 24px 24px 28px; justify-content: center; }
+  .chamada h1 { font-size: 1.6rem; }
+}

@@ -1,0 +1,29 @@
+<footer class="rodape">
+  <div class="rodape-conteudo">
+    <p class="descricao">
+      Beleza para expressar quem você é. Produtos selecionados com carinho para iluminar todos os seus dias.
+    </p>
+
+    <div>
+      <h5>Navegue</h5>
+      <nav class="links">
+        <a href="#inicio">Inicio</a>
+        <a href="#produtos" (click)="lista.filtrarCategoria('Todos')">Produtos</a>
+        <a href="#produtos" (click)="lista.filtrarCategoria('Maquiagem')">Maquiagem</a>
+        <a href="#produtos" (click)="lista.filtrarCategoria('Skin care')">Skin care</a>
+      </nav>
+    </div>
+
+    <div>
+      <h5>Fique por dentro</h5>
+      <p class="descricao">Novidades, dicas e ofertas especiais nas nossas redes.</p>
+      <div class="redes">
+        <a [href]="linkInstagram" target="_blank" rel="noopener" aria-label="Instagram"><app-icone nome="instagram" [tamanho]="18"></app-icone></a>
+       <a [href]="linkMercadoLivre" target="_blank" rel="noopener" aria-label="Mercado Livre"><app-icone nome="mercado" [tamanho]="18"></app-icone></a>
+        <a [href]="lista.linkWhatsapp()" target="_blank" rel="noopener" aria-label="WhatsApp"><app-icone nome="whatsapp" [tamanho]="18"></app-icone></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="direitos">© 2025 D Glow. Todos os direitos reservados.</p>
+</footer>

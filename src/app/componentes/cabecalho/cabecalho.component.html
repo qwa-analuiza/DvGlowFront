@@ -1,0 +1,38 @@
+<header class="cabecalho">
+  <button class="botao-icone botao-menu" (click)="lista.abrirMenu()" aria-label="Abrir menu">
+    <app-icone nome="menu" [tamanho]="22"></app-icone>
+  </button>
+
+  <nav class="navegacao">
+    <a href="#inicio">Inicio</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Todos')">Produtos</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Maquiagem')">Maquiagem</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Skin care')">Skin care</a>
+  </nav>
+
+  <button class="botao-icone botao-sacola" (click)="lista.abrirLista()" aria-label="Abrir lista de produtos">
+    <app-icone nome="sacola" [tamanho]="30"></app-icone>
+    <span class="contador" *ngIf="lista.quantidadeTotal > 0">{{ lista.quantidadeTotal }}</span>
+  </button>
+</header>
+
+<div class="fundo-escuro" [class.visivel]="lista.menuAberto" (click)="lista.fecharMenu()"></div>
+
+<aside class="menu-lateral" [class.aberto]="lista.menuAberto">
+  <div class="menu-topo">
+    
+    <button class="botao-fechar" (click)="lista.fecharMenu()" aria-label="Fechar menu">
+      <app-icone nome="fechar" [tamanho]="18"></app-icone>
+    </button>
+  </div>
+
+  <nav class="menu-links">
+    <a href="#inicio" (click)="lista.fecharMenu()">Inicio</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Todos')">Produtos</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Maquiagem')">Maquiagem</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Skin care')">Skin care</a>
+    <a href="#produtos" (click)="lista.filtrarCategoria('Perfumaria')">Perfumaria</a>
+  </nav>
+
+  <p class="menu-rodape">Escolha seus favoritos e envie sua lista diretamente pelo WhatsApp.</p>
+</aside>

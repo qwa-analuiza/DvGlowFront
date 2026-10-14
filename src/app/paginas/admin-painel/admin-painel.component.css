@@ -1,0 +1,100 @@
+:host { display: block; min-height: 100vh; background: #f7f4f2; }
+
+/* ----- topo ----- */
+.topo { background: #fff; border-bottom: 1px solid #f0dde1; }
+.topo-conteudo { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 76px; display: flex; align-items: center; justify-content: space-between; }
+.marca { display: flex; align-items: center; gap: 14px; }
+.marca img { width: 48px; height: 48px; border-radius: 50%; }
+.marca strong { display: block; font-size: 14px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.marca span { display: block; margin-top: 4px; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-suave); }
+.topo-acoes { display: flex; align-items: center; gap: 14px; }
+.botao-loja { height: 40px; padding: 0 20px; border-radius: 999px; }
+.botao-sair { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: var(--texto-suave); }
+.botao-sair:hover { background: var(--rosa-claro); color: var(--rosa-escuro); }
+
+/* ----- conteúdo ----- */
+.conteudo { max-width: 1200px; margin: 0 auto; padding: 36px 20px 64px; }
+.titulo-pagina { display: flex; flex-direction: column; align-items: stretch; gap: 22px; margin-bottom: 28px; }
+.titulo-pagina .etiqueta { color: var(--rosa-escuro); margin-bottom: 12px; }
+h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; color: var(--texto-titulo); }
+.subtitulo { margin-top: 10px; font-size: 14px; color: var(--texto-suave); }
+
+/* ----- resumo ----- */
+.resumo { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 24px; }
+.cartao-resumo {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  padding: 22px; background: #fff; border: 1px solid #eadfe0; border-radius: 18px;
+}
+.cartao-resumo p { font-size: 13px; color: var(--texto-suave); }
+.cartao-resumo strong { display: block; margin-top: 14px; font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em; color: var(--texto-titulo); }
+.icone-resumo { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--rosa-claro); color: var(--rosa-escuro); }
+
+/* ----- lista ----- */
+.lista { background: #fff; border: 1px solid #eadfe0; border-radius: 18px; overflow: hidden; }
+.lista-topo { display: flex; flex-direction: column; gap: 16px; padding: 22px 20px; }
+.lista-topo h2 { font-size: 17px; font-weight: 600; color: var(--texto-titulo); }
+.lista-topo p { margin-top: 4px; font-size: 12.5px; color: var(--texto-suave); }
+
+.busca { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px; border: 1px solid #e8dcdc; border-radius: 12px; color: var(--texto-suave); }
+.busca:focus-within { border-color: var(--rosa); box-shadow: 0 0 0 3px rgba(185, 117, 128, 0.18); }
+.busca input { flex: 1; min-width: 0; border: none; outline: none; background: none; font: inherit; font-size: 13px; color: var(--texto); }
+.aviso { padding: 0 20px 16px; }
+
+.cabecalho-colunas { display: none; }
+
+.linha {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) auto;
+  grid-template-areas: "foto nome acoes" "foto categoria acoes" "foto preco acoes";
+  align-items: center; column-gap: 16px; row-gap: 4px;
+  padding: 16px 20px; border-top: 1px solid #f1e8e8;
+}
+.foto { grid-area: foto; width: 56px; height: 64px; border-radius: 10px; object-fit: cover; background: #f7f1f1; }
+.nome { grid-area: nome; font-size: 14px; font-weight: 500; color: var(--texto); line-height: 1.35; }
+.categoria { grid-area: categoria; font-size: 12.5px; color: var(--texto-suave); }
+.preco { grid-area: preco; font-size: 13px; font-weight: 600; color: var(--rosa-escuro); }
+.acoes { grid-area: acoes; display: flex; gap: 4px; }
+.acoes button { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--texto-suave); }
+.acoes button:hover { background: var(--rosa-claro); color: var(--rosa-escuro); }
+.acoes button:last-child:hover { background: #fbe6e6; color: #b4474f; }
+
+.vazio { padding: 40px 20px; text-align: center; font-size: 14px; color: var(--texto-suave); border-top: 1px solid #f1e8e8; }
+
+/* ----- confirmação de exclusão ----- */
+.fundo-confirmacao {
+  position: fixed; inset: 0; z-index: 110; padding: 20px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(70, 40, 48, 0.35); backdrop-filter: blur(6px);
+}
+.confirmacao { width: 100%; max-width: 420px; padding: 28px; background: #fff; border-radius: 20px; box-shadow: 0 30px 80px rgba(70, 30, 40, 0.28); }
+.confirmacao h2 { font-size: 20px; font-weight: 600; color: var(--texto-titulo); margin-bottom: 12px; }
+.confirmacao p { font-size: 14px; line-height: 1.6; color: var(--texto-suave); }
+.confirmacao strong { color: var(--texto); font-weight: 600; }
+.botoes { display: flex; flex-direction: column-reverse; gap: 12px; margin-top: 24px; }
+.botoes .admin-botao { width: 100%; }
+
+/* ----- telas maiores ----- */
+@media (min-width: 640px) {
+  .topo-conteudo { padding: 0 32px; }
+  .conteudo { padding: 48px 32px 80px; }
+  .titulo-pagina { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+  h1 { font-size: 2.4rem; }
+  .resumo { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .lista-topo { flex-direction: row; align-items: center; justify-content: space-between; padding: 22px 20px; }
+  .busca { width: 288px; }
+  .botoes { flex-direction: row; justify-content: flex-end; }
+  .botoes .admin-botao { width: auto; }
+}
+
+@media (min-width: 900px) {
+  .cabecalho-colunas, .linha {
+    display: grid; grid-template-columns: 64px minmax(0, 1fr) 200px 140px 96px; column-gap: 20px; align-items: center;
+  }
+  .cabecalho-colunas {
+    padding: 14px 20px; background: #fcf6f6; border-top: 1px solid #f1e8e8;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-suave);
+  }
+  .direita { text-align: right; }
+  .linha { grid-template-areas: "foto nome categoria preco acoes"; padding: 14px 20px; }
+  .nome { font-size: 15px; }
+  .acoes { justify-content: flex-end; }
+}

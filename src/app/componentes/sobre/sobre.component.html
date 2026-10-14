@@ -1,0 +1,25 @@
+<section class="secao-sobre">
+  <div class="cartao-sobre">
+    <img class="logo-sobre" src="assets/imagens/logo.png" alt="DV Glow">
+    <div>
+      <p class="etiqueta">Sobre a DV Glow</p>
+      <h2>Beleza escolhida com carinho</h2>
+      <p class="texto">
+        A DV Glow nasceu para aproximar você de produtos que valorizam sua beleza e sua rotina.
+        Cada item é selecionado com cuidado para oferecer uma experiência leve, acolhedora e cheia de brilho.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="beneficios">
+  <div class="beneficios-conteudo">
+    <div class="beneficio" *ngFor="let beneficio of beneficios">
+      <span class="icone-circulo"><app-icone [nome]="beneficio.icone" [tamanho]="18"></app-icone></span>
+      <div>
+        <h4>{{ beneficio.titulo }}</h4>
+        <p>{{ beneficio.texto }}</p>
+      </div>
+    </div>
+  </div>
+</section>

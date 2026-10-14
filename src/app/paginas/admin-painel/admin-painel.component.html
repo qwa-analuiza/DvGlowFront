@@ -1,0 +1,108 @@
+<header class="topo">
+  <div class="topo-conteudo">
+    <div class="marca">
+      <img src="assets/imagens/logo.png" alt="DV Glow">
+      <div>
+        <strong>DV Glow</strong>
+        <span>Administração</span>
+      </div>
+    </div>
+
+    <div class="topo-acoes">
+      <a class="admin-botao admin-botao-contorno botao-loja" routerLink="/">Ver loja</a>
+      <button class="botao-sair" type="button" (click)="sair()" aria-label="Sair do painel">
+        <app-icone nome="sair" [tamanho]="18"></app-icone>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="conteudo">
+  <div class="titulo-pagina">
+    <div>
+      <p class="etiqueta">Catálogo</p>
+      <h1>Gestão de produtos</h1>
+      <p class="subtitulo">Adicione, edite e organize os itens exibidos na loja.</p>
+    </div>
+    <button class="admin-botao admin-botao-primario" type="button" (click)="abrirFormulario()">
+      <app-icone nome="mais" [tamanho]="16"></app-icone> Novo produto
+    </button>
+  </div>
+
+  <section class="resumo">
+    <article class="cartao-resumo">
+      <div>
+        <p>Produtos cadastrados</p>
+        <strong>{{ produtos.length }}</strong>
+      </div>
+      <span class="icone-resumo"><app-icone nome="caixa" [tamanho]="16"></app-icone></span>
+    </article>
+    <article class="cartao-resumo">
+      <div>
+        <p>Categorias ativas</p>
+        <strong>{{ categoriasAtivas }}</strong>
+      </div>
+    </article>
+    <article class="cartao-resumo">
+      <div>
+        <p>Valor médio</p>
+        <strong>{{ valorMedio | preco }}</strong>
+      </div>
+    </article>
+  </section>
+
+  <section class="lista">
+    <div class="lista-topo">
+      <div>
+        <h2>Todos os produtos</h2>
+        <p>{{ produtosFiltrados.length }} {{ produtosFiltrados.length === 1 ? 'item encontrado' : 'itens encontrados' }}</p>
+      </div>
+      <label class="busca">
+        <app-icone nome="busca" [tamanho]="16"></app-icone>
+        <input type="search" [formControl]="busca" placeholder="Buscar produto..." aria-label="Buscar produto">
+      </label>
+    </div>
+
+    <p class="admin-erro aviso" *ngIf="erro">{{ erro }}</p>
+
+    <div class="cabecalho-colunas" *ngIf="produtosFiltrados.length > 0">
+      <span>Foto</span><span>Produto</span><span>Categoria</span><span>Preço</span><span class="direita">Ações</span>
+    </div>
+
+    <article class="linha" *ngFor="let produto of produtosFiltrados">
+      <img class="foto" [src]="urlDaImagem(produto)" [alt]="produto.nome">
+      <h3 class="nome">{{ produto.nome }}</h3>
+      <span class="categoria">{{ produto.categoria }}</span>
+      <span class="preco">{{ produto.preco | preco }}</span>
+      <div class="acoes">
+        <button type="button" (click)="abrirFormulario(produto)" [attr.aria-label]="'Editar ' + produto.nome">
+          <app-icone nome="lapis" [tamanho]="16"></app-icone>
+        </button>
+        <button type="button" (click)="produtoParaExcluir = produto" [attr.aria-label]="'Excluir ' + produto.nome">
+          <app-icone nome="lixeira" [tamanho]="16"></app-icone>
+        </button>
+      </div>
+    </article>
+
+    <p class="vazio" *ngIf="carregando">Carregando produtos...</p>
+    <p class="vazio" *ngIf="!carregando && !erro && produtosFiltrados.length === 0">
+      {{ produtos.length === 0 ? 'Nenhum produto cadastrado ainda.' : 'Nenhum produto encontrado para essa busca.' }}
+    </p>
+  </section>
+</main>
+
+<app-produto-formulario *ngIf="formularioAberto" [produto]="produtoEmEdicao"
+                        (salvo)="aoSalvar()" (cancelado)="fecharFormulario()"></app-produto-formulario>
+
+<div class="fundo-confirmacao" *ngIf="produtoParaExcluir" (click)="produtoParaExcluir = null">
+  <div class="confirmacao" role="alertdialog" aria-modal="true" (click)="$event.stopPropagation()">
+    <h2>Excluir produto?</h2>
+    <p><strong>{{ produtoParaExcluir.nome }}</strong> será removido da loja. Essa ação não pode ser desfeita.</p>
+    <div class="botoes">
+      <button class="admin-botao admin-botao-contorno" type="button" (click)="produtoParaExcluir = null" [disabled]="excluindo">Cancelar</button>
+      <button class="admin-botao admin-botao-perigo" type="button" (click)="confirmarExclusao()" [disabled]="excluindo">
+        {{ excluindo ? 'Excluindo...' : 'Excluir' }}
+      </button>
+    </div>
+  </div>
+</div>

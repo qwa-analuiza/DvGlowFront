@@ -1,0 +1,29 @@
+<section class="secao-categorias">
+  <div class="cabecalho-secao">
+    <p class="etiqueta com-linhas">Escolhas para você</p>
+    <h2 class="titulo-secao">Beleza para cada momento</h2>
+  </div>
+
+  <div class="grade">
+    <a class="cartao" href="#produtos" *ngFor="let categoria of categorias"
+       (click)="lista.filtrarCategoria(categoria.titulo)">
+      <span class="etiqueta">{{ categoria.etiqueta }}</span>
+      <h3>{{ categoria.titulo }}</h3>
+      <p>{{ categoria.descricao }}</p>
+      <span class="botao-seta"><app-icone nome="seta" [tamanho]="14"></app-icone></span>
+    </a>
+  </div>
+</section>
+
+<section class="faixa-mercado-livre">
+  <div class="faixa-conteudo">
+    <div>
+      <p class="etiqueta">Outra opção de compra</p>
+      <h3>A DV Glow também está no Mercado Livre</h3>
+      <p class="faixa-texto">Se preferir, encontre alguns dos nossos produtos por lá.</p>
+    </div>
+    <a class="botao-contorno" [href]="linkMercadoLivre" target="_blank" rel="noopener">
+      Ver no Mercado Livre <app-icone nome="seta" [tamanho]="15"></app-icone>
+    </a>
+  </div>
+</section>
